@@ -1,0 +1,13 @@
+{% extends "base.html" %} 
+ 
+{% block title %}{{ chapter.post.title }}{% endblock %} 
+ 
+{% block content %} 
+  <h1>{{ chapter.title }}</h1> 
+  <p class="date"> 
+    Published {{ chapter.publish }} by {{ chapter.user }} 
+  </p>
+  {% for i in chapter.images.all %}
+    <img src="{{ i.image.url }}" /><br>
+  {% endfor %} 
+{% endblock %}

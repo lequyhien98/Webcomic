@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+ 
+{% block title %}{{ post.title }}{% endblock %} 
+ 
+{% block content %} 
+  <h1>{{ post.title }}</h1> 
+  <p class="date"> 
+    Published {{ post.publish }} by {{ post.user }} 
+  </p>
+  <img src="{{ post.image_cover.url }}" /><br>
+  Nội Dung:<br>
+  {{ post.body|linebreaks }} 
+  {% for i in post.chapters.all %}
+  <h2>
+      <a href="{{ i.get_absolute_url }}">
+        {{ i.title }}<br>      </a>
+    </h2>
+  {% endfor %} 
+  {% comment %} {% for i in post.post.images.all %}
+    <img src="{{ i.image.url }}" /><br>
+  {% endfor %} {% endcomment %}
+  
+{% endblock %}
