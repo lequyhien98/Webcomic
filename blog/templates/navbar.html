@@ -9,20 +9,14 @@
         <!-- <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li> -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
+        <form action="blog:genre_list">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'blog:genre_list' %}">Thể Loại</a>
+          </li>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="navbar-item nav-link" href="{% url 'profile' %}">Profile</a>
           </div>
-        </li>
+        </form>        
         <!-- <li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
         </li> -->
@@ -31,15 +25,26 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
-      <div class="navbar-nav">
-            {% if user.is_authenticated %}
-                <a class="navbar-item nav-link" href="{% url 'profile' %}">Profile</a>
-                <a class="navbar-item nav-link" href="{% url 'logout' %}">Logout</a>
+      <div class="navbar-nav ml-auto">
+        {% if request.user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% if request.user.profile.image %}
+              <img class="rounded-circle account-img" src="{{ request.user.profile.image.url }}" width="30px" height="30px">
             {% else %}
-                <a class="navbar-item nav-link" href="{% url 'login' %}">Login</a>
-                <a class="navbar-item nav-link" href="{% url 'register' %}">Register</a>
+              <img src="../../media/images/None/default.jpg">
             {% endif %}
+            <span>{{ request.user|capfirst }}</span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="navbar-item nav-link" href="{% url 'profile' %}">Profile</a>
+              <a class="navbar-item nav-link" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+              <a class="navbar-item nav-link" href="{% url 'login' %}">Login</a>
+              <a class="navbar-item nav-link" href="{% url 'register' %}">Register</a>
+            {% endif %}
+          </div>
+        </li>                              
       </div>
-
     </div>
   </nav>

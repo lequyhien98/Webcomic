@@ -1,20 +1,27 @@
 {% extends "base.html" %}
  
 {% block title %}My Blog{% endblock %}
- 
 {% block content %}
-  <h1>My Blog</h1>
-  {% for post in posts %}
-    <h2>
-      <a href="{{ post.get_absolute_url }}">
-        {{ post.title }}
-      </a>
-    </h2>
-    <p class="date">
-      Published {{ post.publish }} by {{ post.user }}
-    </p>
-    {{ post.body|truncatewords:30|linebreaks }}
+  <div>
+    {% for genre in object_list  %}
+      <h2>{{ genre.name }}</h2>
+    {% endfor %}
+  </div>
+  <!-- <div class="row">
+  {% for post in genre.post_set.all|slice:"0:3" %}
+    <div class="col-md-4">
+      <div class="card" style="width: 18rem;">
+        <a href="{{ post.get_absolute_url }}">
+          <img class="card-img-top" width="350" height="300" src="{{ post.image_cover.url }}" alt="Card image cap">
+        </a>
+        <div class="card-body">
+          <a href="{{ post.get_absolute_url }}">
+            <h5 class="card-title"> {{ post.title }}</h5>
+          </a>
+          <p class="card-text date">Published {{ post.publish }} by {{ post.user }}</p>
+        </div>
+      </div>
+    </div>
   {% endfor %}
-  
-  {% include "pagination.html" with page=page_obj %}
+  </div> -->
 {% endblock %}

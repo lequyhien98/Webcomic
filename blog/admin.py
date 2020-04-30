@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import Post, Chapter, ChapterImage
+from .models import Post, Chapter, ChapterImage, Genre
+
+@admin.register(Genre)
+class GenreAdmin(admin.ModelAdmin):
+    pass
 
 class ChapterImageInline(admin.TabularInline):
     model = ChapterImage
@@ -7,11 +11,10 @@ class ChapterImageInline(admin.TabularInline):
 
 @admin.register(Chapter)
 class ChapterAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'user', 'publish',   
+    list_display = ('title', 'user', 'publish',   
                        'status')
     list_filter = ('status', 'created', 'publish', 'user')
     search_fields = ('title', 'body')
-    prepopulated_fields = {'slug': ('title',)}
     raw_id_fields = ('user',)
     date_hierarchy = 'publish'
     ordering = ('status', 'publish')
@@ -20,11 +23,10 @@ class ChapterAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'user', 'publish',   
+    list_display = ('title', 'user', 'publish',   
                        'status')
     list_filter = ('status', 'created', 'publish', 'user')
     search_fields = ('title', 'body')
-    prepopulated_fields = {'slug': ('title',)}
     raw_id_fields = ('user',)
     date_hierarchy = 'publish'
     ordering = ('status', 'publish')
