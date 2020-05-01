@@ -14,9 +14,9 @@ STATUS_CHOICES = (
 
 class Post(models.Model): 
     title = models.CharField(max_length=250) 
+    slug = models.SlugField(max_length=250, unique=True)
     user = models.ForeignKey(User, 
-                               on_delete=models.CASCADE,
-                               related_name='blog_posts')
+                               on_delete=models.CASCADE)
     body = models.TextField() 
     publish = models.DateTimeField(default=timezone.now) 
     created = models.DateTimeField(auto_now_add=True) 
@@ -30,38 +30,39 @@ class Post(models.Model):
     image_cover = models.ImageField(upload_to="cover_img", default="images/None/no-img.jpg", blank=True) 
 
     class Meta: 
-        ordering = ('-id',) 
+        ordering = ('-publish',) 
 
     def __str__(self): 
         return self.title
 
     def get_absolute_url(self):
-        return reverse('blog:post_detail',
-                       args=[self.id])
+        return reverse('blog:post-detail',
+                       args=[self.slug])
 
 class Genre(models.Model):
     name = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250, unique=True, default="")
     posts = models.ManyToManyField(Post)
     class Meta: 
-        ordering = ('-id',) 
+        ordering = ('id',) 
         verbose_name_plural = "genres"
 
     def __str__(self): 
         return self.name
     
     def get_absolute_url(self):
-        return reverse('blog:genre_list',
-                       args=[self.id])
+        return reverse('blog:genre-detail',
+                       args=[self.slug])
 
-class Chapter(models.Model):
+class Chap(models.Model):
     post = models.ForeignKey(
-        'Post', related_name='chapters',
+        Post, related_name='chaps',
         on_delete=models.CASCADE,
     )
+    slug = models.SlugField(max_length=250, unique=True, default="")
     title = models.CharField(max_length=250) 
     user = models.ForeignKey(User, 
-                               on_delete=models.CASCADE,
-                               related_name='blog_chapters')
+                               on_delete=models.CASCADE)
     publish = models.DateTimeField(default=timezone.now) 
     created = models.DateTimeField(auto_now_add=True) 
     updated = models.DateTimeField(auto_now=True) 
@@ -73,15 +74,15 @@ class Chapter(models.Model):
     published = PublishedManager() # Our custom manager.
 
     class Meta: 
-        ordering = ('-id',)
+        ordering = ('-publish',)
 
     def __str__(self): 
         return self.title
     
     def get_absolute_url(self):
-        return reverse('blog:chapter_detail',
-                       args=[self.post.id, self.id])
+        return reverse('blog:chap-detail',
+                       args=[self.post.slug, self.slug])
 
-class ChapterImage(models.Model):
-    chapter = models.ForeignKey('Chapter', related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="comics/headers/")
+class ChapImage(models.Model):
+    chap = models.ForeignKey(Chap, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="comics/headers/", default="")

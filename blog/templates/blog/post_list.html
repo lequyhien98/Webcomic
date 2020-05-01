@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+ 
+{% block title %}My Blog{% endblock %}
+{% block content %}
+<div class="row">
+    {% for post in posts %}
+    <div class="col-3">
+        <div class="card mt-2" style="width: 18rem;">
+            <a href="{{ post.get_absolute_url }}">
+                <img class="card-img-top" width="350" height="300" src="{{ post.image_cover.url }}" alt="Card image cap">
+            </a>
+            <div class="card-body">
+                <a href="{{ post.get_absolute_url }}">
+                    <h4 class="card-title text-center"> {{ post.title }}</h4>
+                </a>
+                <p class="card-text date">Đăng bởi {{ post.user }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

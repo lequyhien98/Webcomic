@@ -7,17 +7,17 @@
   <p class="date"> 
     Published {{ post.publish }} by {{ post.user }} 
   </p>
-  <img width="176" height="264" src="{{ post.image_cover.url }}" /><br>
+  <img width="286" height="300" src="{{ post.image_cover.url }}" /><br>
   Nội Dung:<br>
   {{ post.body|linebreaks }} 
-  {% for i in post.chapters.all %}
+  {% for chap in post.chaps.all %}
   <h2>
-      <a href="{{ i.get_absolute_url }}">
-        {{ i.title }}<br>      </a>
+      <a href="{{ chap.get_absolute_url }}">
+        {{ chap.title }}<br>      </a>
     </h2>
   {% endfor %} 
-  {% comment %} {% for i in post.post.images.all %}
-    <img src="{{ i.image.url }}" /><br>
+  {% comment %} {% for chap in object.post.images.all %}
+    <img src="{{ chap.image.url }}" /><br>
   {% endfor %} {% endcomment %}
   
 {% endblock %}

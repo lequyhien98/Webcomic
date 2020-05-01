@@ -1,10 +1,9 @@
-{% extends "base.html" %} {% block title %}My Blog{% endblock %} {% block content %} {% for genre in genres %}
+{% extends "base.html" %} {% block title %}My Blog{% endblock %} {% block content %}
 <div>
-    <a class="btn float-right btn-more" href="{{ genre.get_absolute_url }}">Xem thêm</a>
     <h2>{{ genre.name }}</h2>
 </div>
 <div class="row">
-    {% for post in genre.posts.all|slice:"0:4" %}
+    {% for post in genre.posts.all %}
     <div class="col-3">
         <div class="card" style="width: 18rem;">
             <a href="{{ post.get_absolute_url }}">
@@ -20,4 +19,4 @@
     </div>
     {% endfor %}
 </div>
-{% endfor %} {% endblock %}
+ {% endblock %}

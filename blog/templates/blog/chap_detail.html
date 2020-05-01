@@ -1,0 +1,10 @@
+{% extends "base.html" %} 
+ 
+{% block title %}{{ chap.post.title }}{% endblock %} 
+ 
+{% block content %} 
+  <h1 class="text-center">{{ chap.title }}</h1> 
+  {% for i in chap.images.all %}
+    <div class="text-center"><img src="{{ i.image.url }}" /></div><br>
+  {% endfor %} 
+{% endblock %}
