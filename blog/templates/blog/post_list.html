@@ -2,6 +2,7 @@
  
 {% block title %}My Blog{% endblock %}
 {% block content %}
+<h2>Tất cả truyện</h2>
 <div class="row">
     {% for post in posts %}
     <div class="col-3">
@@ -13,10 +14,35 @@
                 <a href="{{ post.get_absolute_url }}">
                     <h4 class="card-title text-center"> {{ post.title }}</h4>
                 </a>
-                <p class="card-text date">Đăng bởi {{ post.user }}</p>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
+
+<ul class="pagination">
+    {% if posts.has_previous %}
+      <li class="page-item">
+        <a href="?page={{ posts.previous_page_number }}" class="page-link">&laquo;</a>
+      </li>
+    {% endif %}
+  
+    {% for p in page_range %}
+      {% if posts.number == p %}
+        <li class="page-item active">
+          <a href="?page={{ p }}" class="page-link">{{ p }}</a>
+        </li>
+      {% else %}
+        <li class="page-item">
+          <a href="?page={{ p }}" class="page-link">{{ p }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  
+    {% if posts.has_next %}
+      <li class="page-item">
+        <a href="?page={{ posts.next_page_number }}" class="page-link">&raquo;</a>
+      </li>
+    {% endif %}
+  </ul>
 {% endblock %}

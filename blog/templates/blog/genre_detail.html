@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% block title %}My Blog{% endblock %} {% block content %}
-<div>
+<div class="mt-2">
     <h2>{{ genre.name }}</h2>
 </div>
 <div class="row">
-    {% for post in genre.posts.all %}
+    {% for post in posts %}
     <div class="col-3">
         <div class="card" style="width: 18rem;">
             <a href="{{ post.get_absolute_url }}">
@@ -11,12 +11,37 @@
             </a>
             <div class="card-body">
                 <a href="{{ post.get_absolute_url }}">
-                    <h5 class="card-title"> {{ post.title }}</h5>
+                    <h4 class="card-title text-center"> {{ post.title }}</h4>
                 </a>
-                <p class="card-text date">Published {{ post.publish }} by {{ post.user }}</p>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
+
+<ul class="pagination">
+    {% if posts.has_previous %}
+      <li class="page-item">
+        <a href="?page={{ posts.previous_page_number }}" class="page-link">&laquo;</a>
+      </li>
+    {% endif %}
+  
+    {% for p in page_range %}
+      {% if posts.number == p %}
+        <li class="page-item active">
+          <a href="?page={{ p }}" class="page-link">{{ p }}</a>
+        </li>
+      {% else %}
+        <li class="page-item">
+          <a href="?page={{ p }}" class="page-link">{{ p }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  
+    {% if posts.has_next %}
+      <li class="page-item">
+        <a href="?page={{ posts.next_page_number }}" class="page-link">&raquo;</a>
+      </li>
+    {% endif %}
+</ul>
  {% endblock %}

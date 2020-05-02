@@ -17,7 +17,8 @@ class Post(models.Model):
     slug = models.SlugField(max_length=250, unique=True)
     user = models.ForeignKey(User, 
                                on_delete=models.CASCADE)
-    body = models.TextField() 
+    body = models.TextField()
+    likes = models.ManyToManyField(User, related_name='likes', blank=True)
     publish = models.DateTimeField(default=timezone.now) 
     created = models.DateTimeField(auto_now_add=True) 
     updated = models.DateTimeField(auto_now=True) 
@@ -34,6 +35,9 @@ class Post(models.Model):
 
     def __str__(self): 
         return self.title
+    
+    def total_likes(self):
+        return self.likes.count()
 
     def get_absolute_url(self):
         return reverse('blog:post-detail',
@@ -44,7 +48,7 @@ class Genre(models.Model):
     slug = models.SlugField(max_length=250, unique=True, default="")
     posts = models.ManyToManyField(Post)
     class Meta: 
-        ordering = ('id',) 
+        ordering = ('name',) 
         verbose_name_plural = "genres"
 
     def __str__(self): 
@@ -59,8 +63,8 @@ class Chap(models.Model):
         Post, related_name='chaps',
         on_delete=models.CASCADE,
     )
-    slug = models.SlugField(max_length=250, unique=True, default="")
     title = models.CharField(max_length=250) 
+    slug = models.SlugField(max_length=250, unique=True, default="")
     user = models.ForeignKey(User, 
                                on_delete=models.CASCADE)
     publish = models.DateTimeField(default=timezone.now) 
@@ -74,7 +78,7 @@ class Chap(models.Model):
     published = PublishedManager() # Our custom manager.
 
     class Meta: 
-        ordering = ('-publish',)
+        ordering = ('-title',)
 
     def __str__(self): 
         return self.title
@@ -86,3 +90,14 @@ class Chap(models.Model):
 class ChapImage(models.Model):
     chap = models.ForeignKey(Chap, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to="comics/headers/", default="")
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    reply = models.ForeignKey('Comment', null=True, related_name="replies", on_delete=models.CASCADE)
+    content = models.TextField(max_length=160)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '{}-{}'.format(self.post.title, str(self.user.username))
+

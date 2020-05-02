@@ -137,7 +137,7 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'blog:post_list'
+LOGIN_REDIRECT_URL = 'post-list'
 
 LOGIN_URL = 'login'
 
@@ -149,4 +149,4 @@ EMAIL_HOST_USER = 'lehyvybinhduong@gmail.com'
 EMAIL_HOST_PASSWORD = 'zxx1110201xxz'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '674037867928-tqhe8ine7g5j4a7k2p6fl2fiivs6ijpt.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '_RriylDmwOXy0s_lLQ9p4ae9'
-LOGIN_REDIRECT_URL = 'blog:post_list'
+LOGIN_REDIRECT_URL = 'post-list'

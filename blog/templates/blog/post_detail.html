@@ -1,23 +1,35 @@
-{% extends "base.html" %} 
- 
-{% block title %}{{ post.title }}{% endblock %} 
- 
-{% block content %} 
-  <h1>{{ post.title }}</h1> 
-  <p class="date"> 
-    Published {{ post.publish }} by {{ post.user }} 
-  </p>
-  <img width="286" height="300" src="{{ post.image_cover.url }}" /><br>
-  Nội Dung:<br>
-  {{ post.body|linebreaks }} 
-  {% for chap in post.chaps.all %}
-  <h2>
-      <a href="{{ chap.get_absolute_url }}">
-        {{ chap.title }}<br>      </a>
-    </h2>
-  {% endfor %} 
-  {% comment %} {% for chap in object.post.images.all %}
-    <img src="{{ chap.image.url }}" /><br>
-  {% endfor %} {% endcomment %}
-  
+{% extends "base.html" %} {% block title %}{{ post.title }}{% endblock %} {% block content %}
+<div class="row mt-2">
+    <div class="col-4">
+        <h1>{{ post.title }}</h1>
+        <p class="date">
+            Đăng bởi {{ post.user }}
+        </p>
+        <img width="286" height="300" src="{{ post.image_cover.url }}" />
+        <br>
+    </div>
+    <div class="col-8">
+        <div class="vertical-menu">
+            {% for chap in post.chaps.all %}
+            <a href="{{ chap.get_absolute_url }}">{{ chap.title }}</a>
+            {% endfor %}
+          </div>
+    </div>
+</div>
+
+<div class="row mt-2 ml-1">
+    <h4>Thể loại: </h4>
+    {% for genre in genre_list %}
+        <span class="border rounded text-center ml-2 pt-1"><a href="{{ genre.get_absolute_url }}">{{ genre.name }}</a></span>
+    {% endfor %}
+</div>
+<hr>
+<div id="like-section">
+    {% include 'blog/like_section.html' %}
+</div>
+<hr>
+<div class="main-comment-section">
+    {% include 'blog/comments.html' %}
+</div>
 {% endblock %}
+

@@ -1,92 +1,172 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>{% block title %}{% endblock %}</title>
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <!-- Slick -->
-  <link rel="stylesheet" href="../static/css/slick-theme.css">
-  <link rel="stylesheet" href="../static/css/slick.css">
-  <!-- <link rel="stylesheet" href="../static/css/blog.css"> -->
-  <style type="text/css">
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    .slider {
-        width: 100%;
-        margin: 100px auto;
-    }
-
-    .slick-slide {
-      margin: 0px 20px;
-    }
-
-    .slick-slide img {
-      width: 100%;
-    }
-
-    .slick-prev:before,
-    .slick-next:before {
-      color: black;
-    }
-
-
-    .slick-slide {
-      transition: all ease-in-out .3s;
-      opacity: .2;
-    }
-    
-    .slick-active {
-      opacity: .5;
-    }
-
-    .slick-current {
-      opacity: 1;
-    }
-  </style>
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Slick -->
+    <!-- <link rel="stylesheet" href="../static/css/slick-theme.css"> -->
+    <!-- <link rel="stylesheet" href="../static/css/slick.css"> -->
+    <!-- <link rel="stylesheet" href="../static/css/blog.css"> -->
+    <!-- Like Section -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        .slider {
+            width: 100%;
+            margin: 100px auto;
+        }
+        
+        .slick-slide {
+            margin: 0px 20px;
+        }
+        
+        .slick-slide img {
+            width: 100%;
+        }
+        
+        .slick-prev:before,
+        .slick-next:before {
+            color: black;
+        }
+        
+        .slick-slide {
+            transition: all ease-in-out .3s;
+            opacity: .2;
+        }
+        
+        .slick-active {
+            opacity: .5;
+        }
+        
+        .slick-current {
+            opacity: 1;
+        }
+        
+        .vertical-menu {
+            width: auto;
+            height: 400px;
+            overflow-y: auto;
+        }
+        
+        .vertical-menu a {
+            color: black;
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+        }
+        
+        .vertical-menu a:hover {
+            background-color: #ccc;
+        }
+    </style>
 </head>
-<body>
-  {% include "navbar.html" %}
-  <div id="content">
-    <div class="container-fluid">
-      {% if messages %}
-        {% for message in messages %}
-          <div class="alert alert-{{ message.tags }}">
-            {{message }}
-          </div>
-        {% endfor %}
-      {% endif %}
-      {% block content %}
-      {% endblock %}
-    </div>
-  </div>
-  <!-- <div id="sidebar">
-    <h2>My blog</h2>
-    <p>This is my blog.</p>
-  </div> -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="../static/js/slick.js"></script>
-  <script>
-    $(document).ready(function(){
-        $('.dropdown-toggle').dropdown()
 
-        $(".regular").slick({
-          dots: true,
-          infinite: true,
-          slidesToShow: 3,
-          slidesToScroll: 3
+<body>
+    {% include "navbar.html" %}
+    <div id="content">
+        <div class="container-fluid">
+            {% if messages %} {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{message }}
+            </div>
+            {% endfor %} {% endif %} {% block content %} {% endblock %}
+        </div>
+    </div>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(event) {
+            $('.dropdown-toggle').dropdown()
+            
+            $('.reply-btn').click(function() {
+                $(this).parent().parent().next('.replied-comments').fadeToggle()
+            });
+
+            // $(".regular").slick({
+            //     dots: true,
+            //     infinite: true,
+            //     slidesToShow: 3,
+            //     slidesToScroll: 3
+            // });
+            $(document).on('click', '#like', function(event){
+                event.preventDefault();
+                var pk = $(this).attr('value');
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "like-post" %}',
+                    data: {'id':pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    dataType: 'json',
+                success: function(response){
+                    $('#like-section').html(response['form'])
+                    console.log($('#like-section').html(response['form']));
+                },
+                error: function(rs, e){
+                    console.log(rs.responseText);
+                    },
+                 });
+            });
+
+            $(document).on('submit', '.comment-form', function(event){
+                event.preventDefault();
+                console.log($(this).serialize());
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                success: function(response) {
+                    $('.main-comment-section').html(response['form']);
+                    $('textarea').val('');
+                    $('.reply-btn').click(function() {
+                    $(this).parent().parent().next('.replied-comments').fadeToggle();
+                    $('textarea').val('');
+                    });
+                },
+                error: function(rs, e) {
+                    console.log(rs.responseText);
+                    },
+                });
+            });
+
+
+            $(document).on('submit', '.reply-form', function(event){
+                event.preventDefault();
+                console.log($(this).serialize());
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                success: function(response) {
+                    $('.main-comment-section').html(response['form']);
+                    $('textarea').val('');
+                    $('.reply-btn').click(function() {
+                    $(this).parent().parent().next('.replied-comments').fadeToggle();
+                    $('textarea').val('');
+                    });
+                },
+                error: function(rs, e) {
+                    console.log(rs.responseText);
+                    },
+                });
+            });
         });
-      });
-  </script>
+    </script>
 </body>
+
 </html>
