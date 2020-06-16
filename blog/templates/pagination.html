@@ -1,13 +1,49 @@
-<div class="pagination">
-  <span class="step-links">
-    {% if page.has_previous %}
-      <a href="?page={{ page.previous_page_number }}">Previous</a>
+<ul class="pagination">
+  {% if posts.has_previous %}
+    {% if 'q' in request.GET %}
+    <li class="page-item">
+      <a href="?q={{ request.get.q }}&&page={{ posts.previous_page_number }}" class="page-link">&laquo;</a>
+    </li>
+    {% else %}
+    <li class="page-item">
+      <a href="?page={{ posts.previous_page_number }}" class="page-link">&laquo;</a>
+    </li>
     {% endif %}
-    <span class="current">
-      Page {{ page.number }} of {{ page.paginator.num_pages }}.
-    </span>
-      {% if page.has_next %}
-        <a href="?page={{ page.next_page_number }}">Next</a>
+  {% endif %}
+
+  {% for p in page_range %}
+    {% if posts.number == p %}
+      {% if 'q' in request.GET %}
+        <li class="page-item active">
+          <a href="?q={{ request.get.q }}&&page={{ p }}" class="page-link">{{ p }}</a>
+        </li>
+      {% else %}
+        <li class="page-item active">
+          <a href="?page={{ p }}" class="page-link">{{ p }}</a>
+        </li>
       {% endif %}
-  </span>
-</div>
+    {% else %}
+      {% if 'q' in request.GET %}
+        <li class="page-item">
+          <a href="?q={{ request.get.q }}&&page={{ p }}" class="page-link">{{ p }}</a>
+        </li>
+      {% else %}
+        <li class="page-item">
+          <a href="?page={{ p }}" class="page-link">{{ p }}</a>
+        </li>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% if posts.has_next %}
+    {% if 'q' in request.GET %}
+      <li class="page-item">
+        <a href="?q={{ request.get.q }}&&page={{ posts.next_page_number }}" class="page-link">&raquo;</a>
+      </li>
+    {% else %}
+      <li class="page-item">
+        <a href="?page={{ posts.next_page_number }}" class="page-link">&raquo;</a>
+      </li>
+    {% endif %}
+  {% endif %}
+</ul>

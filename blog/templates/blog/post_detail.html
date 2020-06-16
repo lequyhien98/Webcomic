@@ -13,14 +13,14 @@
             {% for chap in post.chaps.all %}
             <a href="{{ chap.get_absolute_url }}">{{ chap.title }}</a>
             {% endfor %}
-          </div>
+        </div>
     </div>
 </div>
 
 <div class="row mt-2 ml-1">
     <h4>Thể loại: </h4>
     {% for genre in genre_list %}
-        <span class="border rounded text-center ml-2 pt-1"><a href="{{ genre.get_absolute_url }}">{{ genre.name }}</a></span>
+        <a class="genre-btn border border-dark rounded text-center ml-2 pt-1" href="{{ genre.get_absolute_url }}">{{ genre.name }}</a>
     {% endfor %}
 </div>
 <hr>

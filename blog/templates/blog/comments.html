@@ -17,11 +17,11 @@
     <blockquote class="blockquote">
       <p class="mb-0"><small>{{ comment.content }}</small></p>
       <footer class="blockquote-footer"><small>by <cite title="Source Title">{{ comment.user|capfirst }}</cite></small>
-        <button type="button" name="button" class="reply-btn btn btn-outline-dark btn-sm ml-2">Reply</button>
+        <!-- <button type="button" name="button" class="reply-btn btn btn-outline-dark btn-sm ml-2">Reply</button> -->
       </footer>
     </blockquote>
   
-    <div class="replied-comments container mt-2" style="display:none;">
+    <!-- <div class="replied-comments container mt-2" style="display:none;">
       {% for reply in comment.replies.all %}
       <blockquote class="blockquote">
         <p class="mb-0"><small>{{ reply.content }}</small></p>
@@ -41,6 +41,6 @@
           {% endif %}
         </form>
       </div>
-    </div>
+    </div> -->
   {% endfor %}
   

@@ -45,7 +45,7 @@ class Post(models.Model):
 
 class Genre(models.Model):
     name = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250, unique=True, default="")
+    slug = models.SlugField(max_length=250, unique=True)
     posts = models.ManyToManyField(Post)
     class Meta: 
         ordering = ('name',) 

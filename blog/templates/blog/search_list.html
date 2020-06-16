@@ -2,21 +2,7 @@
  
 {% block title %}My Blog{% endblock %}
 {% block content %}
-<div class="row">
-</div>
-<!-- <h2>Top 10 truyện được yêu thích</h2>
-<div class="vertical-menu">
-    {% for post in rank_like|slice:"0:10" %}
-    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-    {% endfor %}
-</div>
-<h2>10 chap mới cập nhật</h2>
-<div class="vertical-menu">
-    {% for chap in new_chaps|slice:"0:10" %}
-    <a href="{{ chap.get_absolute_url }}">{{ chap.title }} <span class="float-right">{{ chap.post.title }} by {{ chap.post.user }}</span></a>
-    {% endfor %}
-</div> -->
-<h2>Truyện mới cập nhật</h2>
+<h2>Truyện được tìm thấy với từ khóa</h2>
 <div class="row">
     {% for post in posts %}
     <div class="col-3">
@@ -34,5 +20,5 @@
     {% endfor %}
 </div>
 
-<!-- {% include "pagination.html" %} -->
+{% include "pagination.html" %}
 {% endblock %}

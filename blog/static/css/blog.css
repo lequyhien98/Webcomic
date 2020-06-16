@@ -1,40 +1,69 @@
-html, body {
-    margin: 0;
-    padding: 0;
-  }
+html {
+  position: relative;
+  min-height: 100%;
+}
 
-  * {
-    box-sizing: border-box;
-  }
+body {
+  margin-bottom: 160px;
+}
 
-  .slider {
-      width: 50%;
-      margin: 100px auto;
-  }
+.card-body a {
+  color: black ;
 
-  .slick-slide {
-    margin: 0px 20px;
-  }
+}
+.card-body a:hover {
+  text-decoration: none;  
+}
 
-  .slick-slide img {
-    width: 100%;
-  }
+.genre-btn {
+  background-color: white;
+}
 
-  .slick-prev:before,
-  .slick-next:before {
-    color: black;
-  }
+.genre-btn {
+  color: black ;
+}
 
+.genre-btn:hover {
+  text-decoration: none;
+  background-color: black;
+  color: white ;
+}
 
-  .slick-slide {
-    transition: all ease-in-out .3s;
-    opacity: .2;
-  }
-  
-  .slick-active {
-    opacity: .5;
-  }
+.vertical-menu {
+  width: auto;
+  height: 400px;
+  overflow-y: auto;
+}
 
-  .slick-current {
-    opacity: 1;
-  }
+.vertical-menu a {
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.vertical-menu a:hover {
+  background-color: #ccc;
+}
+
+.more-btn {
+  color: black ;
+}
+
+.more-btn:hover {
+  text-decoration: none;
+  color: black ;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: auto;
+  background-color: #2C3E50;
+}
+
+.footer p {
+  text-align: justify;
+}

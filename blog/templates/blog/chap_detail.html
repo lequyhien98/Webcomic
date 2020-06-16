@@ -2,9 +2,23 @@
  
 {% block title %}{{ chap.post.title }}{% endblock %} 
  
-{% block content %} 
-  <h1 class="text-center">{{ chap.title }}</h1> 
-  {% for i in chap.images.all %}
-    <div class="text-center"><img src="{{ i.image.url }}" /></div><br>
-  {% endfor %} 
+{% block content %}
+  <div class="container">
+    <h1 class="text-center">{{ chap.title }}</h1> 
+    {% for i in chap.images.all %}
+      <div class="text-center"><img src="{{ i.image.url }}" /></div><br>
+    {% endfor %}
+    <div class="row d-flex justify-content-between">
+      {% if pre_chap %}
+        <a href="{{ pre_chap.get_absolute_url }}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">&laquo; {{ pre_chap.title }}</a>
+      {% else %}
+        <a href="{{ pre_chap.get_absolute_url }}" class="btn btn-secondary btn-lg active disabled" role="button" aria-disabled="true">&laquo; {{ pre_chap.title }}</a>
+      {% endif %}
+      {% if next_chap %}
+        <a href="{{ next_chap.get_absolute_url }}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ next_chap.title }} &raquo;</a>
+      {% else %}
+        <a href="{{ next_chap.get_absolute_url }}" class="btn btn-secondary btn-lg active disabled" role="button" aria-disabled="true">{{ next_chap.title }} &raquo;</a>
+      {% endif %}
+    </div>
+  </div>
 {% endblock %}

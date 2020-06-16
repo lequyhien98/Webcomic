@@ -1,6 +1,7 @@
 from django.urls import path, include
 from django.contrib import admin
 
+
 from django.conf import settings
 from django.views.static import serve
 from django.conf.urls.static import static
@@ -31,6 +32,8 @@ urlpatterns = [
         path('blog/', include('blog.urls', namespace='blog')),
         path('oauth/', include('social_django.urls', namespace='social')),
         path('like/', views.like_post, name="like-post"),
+        path('ajax/autocomplete/', views.autocomplete, name='ajax_autocomplete'),
+        path('search/', views.search_list, name='search_list')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
