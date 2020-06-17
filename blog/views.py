@@ -10,7 +10,7 @@ from django.db.models import Q
 def post_list(request):
     post_list = Post.published.all()
     paginator = Paginator(post_list, 12) 
-    new_chaps = Chap.published.all()
+    new_chaps = Chap.published.all().reverse()
     rank_like = sorted(post_list, key= lambda t: t.total_likes(), reverse=True)   
 
     page = request.GET.get('page')
@@ -100,7 +100,7 @@ def genre_detail(request, slug):
     genre = get_object_or_404(Genre, slug=slug)
     post_list =  genre.posts.all()
 
-    paginator = Paginator(post_list, 4)
+    paginator = Paginator(post_list, 6)
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)

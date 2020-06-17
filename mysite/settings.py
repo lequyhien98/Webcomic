@@ -57,6 +57,7 @@ MIDDLEWARE = [
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -147,6 +148,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'lehyvybinhduong@gmail.com'
 EMAIL_HOST_PASSWORD = 'zxx1110201xxz'
+
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '674037867928-tqhe8ine7g5j4a7k2p6fl2fiivs6ijpt.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '_RriylDmwOXy0s_lLQ9p4ae9'
+
 LOGIN_REDIRECT_URL = 'post-list'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'

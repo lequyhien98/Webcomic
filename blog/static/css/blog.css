@@ -1,11 +1,3 @@
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 160px;
-}
 
 .card-body a {
   color: black ;
@@ -53,17 +45,4 @@ body {
 .more-btn:hover {
   text-decoration: none;
   color: black ;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: auto;
-  background-color: #2C3E50;
-}
-
-.footer p {
-  text-align: justify;
 }

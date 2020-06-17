@@ -18,6 +18,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, 
                                on_delete=models.CASCADE)
     body = models.TextField()
+    author = models.CharField(max_length=250, default="Chưa xác định") 
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
     publish = models.DateTimeField(default=timezone.now) 
     created = models.DateTimeField(auto_now_add=True) 

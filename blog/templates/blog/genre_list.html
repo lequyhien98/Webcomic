@@ -3,18 +3,16 @@
     <a class="more-btn btn float-right btn-more" href="{{ genre.get_absolute_url }}">Xem thêm</a>
     <h2>{{ genre.name }}</h2>
 </div>
-<div class="row">
-    {% for post in genre.posts.all|slice:"0:4" %}
-    <div class="col-3">
-        <div class="card" style="width: 18rem;">
+<div class="card-columns">
+    {% for post in genre.posts.all|slice:"0:6" %}
+    <div class="card shadow">
+        <a href="{{ post.get_absolute_url }}">
+            <img class="card-img-top" src="{{ post.image_cover.url }}" alt="Card image cap" />
+        </a>
+        <div class="card-body">
             <a href="{{ post.get_absolute_url }}">
-                <img class="card-img-top" width="350" height="300" src="{{ post.image_cover.url }}" alt="Card image cap">
+                <h4 class="card-title text-center">{{ post.title }}</h4>
             </a>
-            <div class="card-body">
-                <a href="{{ post.get_absolute_url }}">
-                    <h4 class="card-title text-center"> {{ post.title }}</h4>
-                </a>
-            </div>
         </div>
     </div>
     {% endfor %}

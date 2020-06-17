@@ -9,18 +9,22 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
     <link type="text/css" href="{% static "css/blog.css" %}" rel="stylesheet" media="screen">
+    <link type="text/css" href="{% static "css/main.css" %}" rel="stylesheet" media="screen">
     <style>
         input {
             max-width: 12em
         }
 
-        ;
+        .content-section {
+            max-width: 500px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 
 <body>
     {% include "navbar.html" %}
-    <div id="content">
+    <div id="content" class="page-content">
         <div class="container-fluid">
             {% if messages %} {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">
