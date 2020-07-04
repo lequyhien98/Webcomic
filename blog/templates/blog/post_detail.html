@@ -13,6 +13,8 @@
             {% for chap in post.chaps.all %}
             <a href="{{ chap.get_absolute_url }}">{{ chap.title }}</a>
             {% endfor %}
+            {{ post.body }}
+
         </div>
     </div>
 </div>

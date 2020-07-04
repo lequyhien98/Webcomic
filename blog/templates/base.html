@@ -60,7 +60,7 @@
                         list = data.list;
                         $("#id_input").autocomplete({
                             source: list,
-                            minLength: 3
+                            minLength: 1
                         });
                     }
                 });
@@ -112,8 +112,6 @@
                     },
                 });
             });
-
-
             $(document).on('submit', '.reply-form', function (event) {
                 event.preventDefault();
                 console.log($(this).serialize());

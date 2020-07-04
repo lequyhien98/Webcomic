@@ -76,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
+                'blog.views.navigation',
             ],
         },
     },
@@ -112,6 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+TEMPLATE_CONTEXT_PROCESSORS = ("django.core.context_processors.request",)
 
 
 # Internationalization

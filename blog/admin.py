@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Chap, ChapImage, Genre, Comment
+from .models import Post, Chap, ChapImage, Genre, Comment, Report
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
@@ -34,4 +34,7 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'publish'
     ordering = ('status', 'publish')
 
+class ReportAdmin(admin.ModelAdmin):
+    pass
 admin.site.register(Comment)
+admin.site.register(Report)

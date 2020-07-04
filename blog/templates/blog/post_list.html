@@ -3,19 +3,20 @@
 {% block content %}
 
 <div class="row">
-
   <div class="col-8">
     <h2>Truyện mới cập nhật</h2>
-    <div class="card-columns">
+    <div class="row">
       {% for post in posts %}
-      <div class="card shadow">
-        <a href="{{ post.get_absolute_url }}">
-          <img class="card-img-top" src="{{ post.image_cover.url }}" alt="Card image cap" />
-        </a>
-        <div class="card-body">
+      <div class="col-4">
+        <div class="card">
           <a href="{{ post.get_absolute_url }}">
-            <h4 class="card-title text-center">{{ post.title }}</h4>
+            <img class="img-thumbnail" width="350" height="300" src="{{ post.image_cover.url }}" alt="Card image cap" />
           </a>
+          <div class="card-body">
+            <a href="{{ post.get_absolute_url }}">
+              <h4 class="card-title text-center">{{ post.title }}</h4>
+            </a>
+          </div>
         </div>
       </div>
       {% endfor %}

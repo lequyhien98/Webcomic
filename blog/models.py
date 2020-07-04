@@ -102,3 +102,9 @@ class Comment(models.Model):
     def __str__(self):
         return '{}-{}'.format(self.post.title, str(self.user.username))
 
+class Report(models.Model):
+    reporting_url = models.URLField()
+    message = models.TextField()
+
+    def __str__(self):
+        return self.reporting_url

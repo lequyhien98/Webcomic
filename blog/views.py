@@ -7,6 +7,11 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template.loader import render_to_string
 from django.db.models import Q
 
+def navigation(request):
+    genre_list = Genre.objects.all()
+    return({'genre_list': genre_list})
+
+
 def post_list(request):
     post_list = Post.published.all()
     paginator = Paginator(post_list, 12) 
@@ -229,4 +234,17 @@ def proper_pagination(posts, index):
         end_index = start_index + end_index
     return (start_index, end_index)
 
-    
+def report_create_view(request, post_slug, chap_slug):
+    form = ReportForm(request.POST or None)
+    url_report = "http://127.0.0.1:8000"+request.get_full_path()
+    url_report = url_report.replace('/report', '')
+    form.reporting_url = url_report
+    if form.is_valid():
+        form.save()
+    context = {
+        'form' : form,
+        'url_report' : url_report
+    }
+    if form.is_valid():
+        return redirect(url_report)
+    return  render(request, "blog/reports_create.html", context)

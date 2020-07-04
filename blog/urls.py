@@ -13,4 +13,5 @@ urlpatterns = [
     path('chap/<slug:post_slug>/<slug:chap_slug>/',
           views.chap_detail,
           name='chap-detail'),
+    path('chap/<slug:post_slug>/<slug:chap_slug>/report/', views.report_create_view, name='report-create'),
 ]

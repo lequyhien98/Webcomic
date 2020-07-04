@@ -6,7 +6,7 @@
   <div class="container">
     <h1 class="text-center">{{ chap.title }}</h1> 
     {% for i in chap.images.all %}
-      <div class="text-center"><img src="{{ i.image.url }}" /></div><br>
+      <div class="text-center"><img class="img-fluid" src="{{ i.image.url }}" /></div><br>
     {% endfor %}
     <div class="row d-flex justify-content-between">
       {% if pre_chap %}
@@ -14,6 +14,7 @@
       {% else %}
         <a href="{{ pre_chap.get_absolute_url }}" class="btn btn-secondary btn-lg active disabled" role="button" aria-disabled="true">&laquo; {{ pre_chap.title }}</a>
       {% endif %}
+      <button onclick="location.href = 'report';" id="myButton" class="btn btn-secondary btn-lg active" >Báo Cáo</button>
       {% if next_chap %}
         <a href="{{ next_chap.get_absolute_url }}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ next_chap.title }} &raquo;</a>
       {% else %}
