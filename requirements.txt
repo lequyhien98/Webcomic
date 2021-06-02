@@ -38,7 +38,7 @@ social-auth-core==3.3.3
 sorl-thumbnail==12.6.3
 soupsieve==2.0.1
 sqlparse==0.3.1
-urllib3==1.24.3
+urllib3==1.26.5
 virtualenv==20.0.20
 virtualenv-clone==0.5.4
 wcwidth==0.1.9
